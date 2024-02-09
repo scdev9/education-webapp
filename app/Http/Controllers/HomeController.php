@@ -27,14 +27,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $stid=Auth::user()->id;
         $role=Auth::user()->role_id;
-        $sessions=DB::select('select * from sessions');
+        $sessions=DB::select('select sessions.session_name,sessions.session_date,sessions.start_time,sessions.end_time,teachers.teacher_name,teachers.teacher_email from session_controls join sessions on session_controls.session_id=sessions.id join teachers on session_controls.teacher_id=teachers.user_id join students on session_controls.student_id=students.user_id where students.user_id = ?',[$stid]);
 
         //dd($role);
-        $stid=Auth::user()->id;
+      
    
        $students = DB::select('select * from students where user_id = ?',[$stid]);
        $teachers = DB::select('select * from teachers where user_id = ?',[$stid]);
+       
 
        //dd($teachers);
 

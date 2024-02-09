@@ -28,21 +28,23 @@
                     <table class="table">
                         <thead>
                            <tr> 
-                            <th>Id</th>
                             <th>Session Name</th>
                             <th>Session Date</th>
                             <th>Start Time</th>
                             <th>End Time</th>
+                            <th>Teacher's Name</th>
+                            <th>Teachers's Email</th>
                            </tr> 
                         </thead>
                           <tbody>
                            @foreach($sessions as $session)
                              <tr>
-                                <td>{{$session->id}}</td>
                                 <td>{{$session->session_name}}</td>
                                 <td>{{$session->session_date}}</td>
                                 <td>{{$session->start_time}}</td>
                                 <td>{{$session->end_time}}</td>
+                                <td>{{$session->teacher_name}}</td>
+                                <td>{{$session->teacher_email}}</td>
                                 
                              </tr>
                         @endforeach
