@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             //SessionControlTableSeeder::class,
-           // SessionsTableSeeder::class,
+          // SessionsTableSeeder::class,
             //SubjectTableSeeder::class
            // UsersTableSeeder::class,
             //StudentsTableSeeder::class,

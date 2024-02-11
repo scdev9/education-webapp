@@ -14,7 +14,7 @@ class SessionControlTableSeeder extends Seeder
      */
     public function run(): void
     {
-       DB::table('session_controls')->insert([
+       /*DB::table('session_controls')->insert([
         'session_id'=>1,
         'student_id'=>1,
         'teacher_id'=>11,
@@ -128,6 +128,22 @@ class SessionControlTableSeeder extends Seeder
         'teacher_id'=>18,
        ]);
 
-       
+       */
+
+       DB::table('session_controls')->insert([
+        'session_id'=>10,
+        'student_id'=>17,
+        'teacher_id'=>3,
+       ]);
+       DB::table('session_controls')->insert([
+        'session_id'=>10,
+        'student_id'=>1,
+        'teacher_id'=>3,
+       ]);
+       DB::table('session_controls')->insert([
+        'session_id'=>10,
+        'student_id'=>2,
+        'teacher_id'=>3,
+       ]);
     }
 }

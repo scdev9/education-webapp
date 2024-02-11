@@ -20,7 +20,7 @@ class SessionsTableSeeder extends Seeder
         $faker = Faker::create();
 
 
-        DB::table('sessions')->insert([
+      /*  DB::table('sessions')->insert([
             'session_name' => str('Sinhala Class'),
             'session_date'=> Carbon::create('2024', '03', '01'),
             'start_time'=>str("07:30:00"),
@@ -34,15 +34,15 @@ class SessionsTableSeeder extends Seeder
             'start_time'=>str("13:30:00"),
             'end_time' =>str("14:30:00")
         ]);
-
+*/
         DB::table('sessions')->insert([
             'session_name' => str('Maths Class'),
-            'session_date'=> Carbon::create('2024', '03', '01'),
-            'start_time'=>str("18:30:00"),
-            'end_time' =>str("20:30:00")
+            'session_date'=> Carbon::create('2024', '03', '05'),
+            'start_time'=>str("07:30:00"),
+            'end_time' =>str("09:30:00")
         ]);
 
-        DB::table('sessions')->insert([
+     /*   DB::table('sessions')->insert([
             'session_name' => str('ICT Class'),
             'session_date'=> Carbon::create('2024', '03', '02'),
             'start_time'=>str("07:30:00"),
@@ -82,6 +82,6 @@ class SessionsTableSeeder extends Seeder
             'session_date'=> Carbon::create('2024', '03', '03'),
             'start_time'=>str("15:30:00"),
             'end_time' =>str("18:30:00")
-        ]);
+        ]);*/
     }
 }

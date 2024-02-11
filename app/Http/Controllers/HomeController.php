@@ -29,19 +29,32 @@ class HomeController extends Controller
     {
         $stid=Auth::user()->id;
         $role=Auth::user()->role_id;
+        $teachers=DB::select('select sessions.session_date,sessions.start_time,sessions.end_time,students.student_name,students.student_email from session_controls join sessions on session_controls.session_id=sessions.id join teachers on session_controls.teacher_id=teachers.user_id join students on session_controls.student_id=students.user_id where session_controls.teacher_id = ?',[$stid]);
         $sessions=DB::select('select sessions.session_name,sessions.session_date,sessions.start_time,sessions.end_time,teachers.teacher_name,teachers.teacher_email from session_controls join sessions on session_controls.session_id=sessions.id join teachers on session_controls.teacher_id=teachers.user_id join students on session_controls.student_id=students.user_id where students.user_id = ?',[$stid]);
 
-        //dd($role);
+        //dd($teachers);
       
    
        $students = DB::select('select * from students where user_id = ?',[$stid]);
-       $teachers = DB::select('select * from teachers where user_id = ?',[$stid]);
-       
+       $teacherList=[];
+      // $studen = [];
+      /* foreach($teachers as $teacher){
+        
+        
+        $studen[]=$teacher->student_name;
+       }*/
+     foreach($teachers as $teacher){
+        
+        $session_name=$teacher->session_date.$teacher->start_time.$teacher->end_time;
 
-       //dd($teachers);
+        $teacherList[$session_name][]= $teacher->student_name;
+        
+     }
+
+       //dd($teacherList,$teachers);
 
        
         
-        return view('home',compact('role','students','stid','teachers','sessions'));
+        return view('home',compact('role','students','stid','teachers','sessions','teachers','teacherList'));
     }
 }

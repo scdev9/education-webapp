@@ -17,15 +17,15 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'role_id' => 1,
-            'name' => 'Shamika Chathuranga',
-            'email' => 'shamika@gmail.com',
-            'password' => bcrypt('password')
+            'role_id' => 0,
+            'name' => 'ADMIN',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin')
 
             
         ]);
 
-        DB::table('users')->insert([
+      /*  DB::table('users')->insert([
             'role_id' => 1,
             'name' => 'Indumith Apsara',
             'email' => 'indumith@gmail.com',
@@ -210,7 +210,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password')
 
             
-        ]);
+        ]);*/
 
        
         }
