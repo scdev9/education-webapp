@@ -106,10 +106,43 @@
                        
 
                       
-                       @endif
+                       
                       
                        
                     </div>
+                    @else
+
+                    <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Teachers</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="{{url('/teachers')}}" class="btn btn-primary">View</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Students</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="{{url('/students')}}" class="btn btn-primary">View</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Users</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="{{url('/users')}}" class="btn btn-primary">View</a>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
 
                 </div>
             </div>
