@@ -29,6 +29,12 @@ Route::get('/teachers/create',[TeacherTableController::class ,'create']);
 Route::get('/users',[UserTableController::class, 'index']);
 Route::get('/users/create',[UserTableController::class, 'create']);
 Route::post('/users/create',[UserTableController::class, 'next']);
+Route::get('/teachers/{id}/edit',[TeacherTableController::class, 'edit']);
+Route::get('/teachers/{id}/delete',[TeacherTableController::class, 'destroy']);
+Route::put('/teachers/{id}/edit',[TeacherTableController::class, 'update']);
+Route::get('/students/{id}/edit',[StudentTableController::class, 'edit']);
+Route::get('/students/{id}/delete',[StudentTableController::class, 'destroy']);
+Route::put('/students/{id}/edit',[StudentTableController::class, 'update']);
 
 //Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

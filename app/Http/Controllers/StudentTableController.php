@@ -72,15 +72,64 @@ class StudentTableController extends Controller
                ]);
 
        return redirect()->back('students/create')->with('status','Student Added');
-
+            }
+       return response('Unauthorized.', 401);
     }
     
-    return response('Unauthorized.', 401);
+    
 
         
         
-    }
     
+    
+    public function edit(int $id){
+        $student=Student::findOrFail($id);
+        $user = Auth::user()->role_id;
+        if ($user==0 ){
+       // return ($teach);
+       return view('students.edit',compact('student'));
+        }
+
+     
+        return response('Unauthorized.', 401);
+    }
+
+    public function update(Request $request,int $id){
+        $user = Auth::user()->role_id;
+     if ($user==0 ){
+        $request->validate([
+            'studentName'=> 'required|max:255|string',
+            'studentEmail' => 'required',
+            'grade' => 'required|max:255|string',
+            'teacherId'=>'required|integer'
+            
+        ]);
+
+        Student::findOrFail($id)->update([
+            'student_name'=> $request->studentName,
+            'student_email'=> $request->studentEmail,
+            'student_grade'=>$request->grade,
+            'teacher_id'=>$request->teacherId,
+
+        ]);
+
+        return redirect()->back()->with('status','Update Done.');
+      }
+      return response('Unauthorized.', 401);
+    }
+
+    public function destroy(int $id){
+
+        $teacher=Student::findOrFail($id);
+        $user = Auth::user()->role_id;
+        if ($user==0 ){
+        $teacher->delete();
+       
+
+        return redirect()->back()->with('status','Record Deleted.');
+        }
+        return response('Unauthorized.', 401);
+    }
 
 
 }

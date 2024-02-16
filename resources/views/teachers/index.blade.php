@@ -15,7 +15,7 @@
     @endif    
 <div class="card col-md-12">
   <div class="card-header">
-    Featured
+  <a class="btn btn-primary" href="{{url('/dashboard')}}">Back</a>
   </div>
   <div class="card-body">
     <h5 class="card-title">Teachers</h5>
@@ -46,8 +46,8 @@
       <td>{{$teacher->teacher_subject}}</td>
       <td>{{$teacher->teacher_email}}</td>
       <td>
-        <a class="btn btn-success" href="#">Edit</a>
-        <a class="btn btn-danger" href="#">Delete</a>
+        <a class="btn btn-success" href="{{url('teachers/'.$teacher->id.'/edit')}}">Edit</a>
+        <a class="btn btn-danger" href="{{url('teachers/'.$teacher->id.'/delete')}}">Delete</a>
         
       </td>
     </tr>

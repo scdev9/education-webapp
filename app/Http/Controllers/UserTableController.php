@@ -6,17 +6,33 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserTableController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function index(){
-        return view('users.index');
+        $users=DB::select('select * from users');
+        $user = Auth::user()->role_id;
+        if ($user==0 ){
+        return view('users.index',compact('users'));
+        }
+        return response('Unauthorized.', 401);
     }
 
 
     public function create(){
+        $user = Auth::user()->role_id;
+        if ($user==0 ){
         return view('users.create');
+        }
+        return response('Unauthorized.', 401);
     }
 
     public function next(Request $request){
