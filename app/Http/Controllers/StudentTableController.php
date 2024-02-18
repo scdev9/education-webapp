@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class StudentTableController extends Controller
    }
 
     public function index(){
-        $students=DB::select('select * from students');
+        $students=DB::select('select students.id,students.created_at,students.updated_at,students.user_id,students.student_name,students.student_email,students.student_grade,students.teacher_id,teachers.teacher_name from students join teachers on students.teacher_id=teachers.id');
          # Allow only if the user is admin or id matches
     $user = Auth::user()->role_id;
     if ($user==0 ){
@@ -83,11 +84,14 @@ class StudentTableController extends Controller
     
     
     public function edit(int $id){
+        $teachers=DB::select('select * from teachers');
         $student=Student::findOrFail($id);
+        $students=DB::select('select students.id,students.created_at,students.updated_at,students.user_id,students.student_name,students.student_email,students.student_grade,students.teacher_id,teachers.teacher_name,teachers.id from students join teachers on students.teacher_id=teachers.id where students.id= ?',[$id]);
         $user = Auth::user()->role_id;
         if ($user==0 ){
        // return ($teach);
-       return view('students.edit',compact('student'));
+       //dd($students);
+       return view('students.edit',compact('student','teachers','students'));
         }
 
      
@@ -97,11 +101,15 @@ class StudentTableController extends Controller
     public function update(Request $request,int $id){
         $user = Auth::user()->role_id;
      if ($user==0 ){
+        //dd($request->teacherName);
+       $teacherId=DB::select('select id from teachers where teacher_name=?',[$request->teacherName]);
+       //dd($teacherId);
+      // dd($teacherId);
         $request->validate([
             'studentName'=> 'required|max:255|string',
             'studentEmail' => 'required',
             'grade' => 'required|max:255|string',
-            'teacherId'=>'required|integer'
+            'teacherName'=>'required'
             
         ]);
 
@@ -109,10 +117,10 @@ class StudentTableController extends Controller
             'student_name'=> $request->studentName,
             'student_email'=> $request->studentEmail,
             'student_grade'=>$request->grade,
-            'teacher_id'=>$request->teacherId,
+            'teacher_id'=>$teacherId[0]->id,
 
         ]);
-
+      // dd($request);
         return redirect()->back()->with('status','Update Done.');
       }
       return response('Unauthorized.', 401);

@@ -41,7 +41,7 @@
       <td>{{$student->created_at}}</td>
       <td>{{$student->updated_at}}</td>
       <td>{{$student->user_id}}</td>
-      <td>{{$student->teacher_id}}</td>
+      <td>{{$student->teacher_name}}</td>
       <td>{{$student->student_name}}</td>
       <td>{{$student->student_grade}}</td>
       <td>{{$student->student_email}}</td>

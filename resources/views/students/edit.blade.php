@@ -15,7 +15,7 @@
 @if(session('status'))
 <div class="alert alert-success">{{session('status')}}</div>
 @endif
-<form action="{{url('students/'.$student->id.'/edit')}}" method="post">
+<form action="{{url('students/'.$student->id.'/edit')}}" method="POST">
 @csrf
 @method('PUT')
 <div class="form-group p-2">
@@ -35,14 +35,25 @@
     @error('grade') <span class="text-danger">{{$message}}</span> @enderror
   </div>
 
+
   <div class="form-group p-2">
-    <label for="exampleInputGrade">Teacher Id</label>
-    <input type="integer" class="form-control" name="teacherId" value="{{$student->teacher_id}}">
-    @error('teacherId') <span class="text-danger">{{$message}}</span> @enderror
+  <label for="exampleInputEmail">Teacher</label>
+  <select class="form-select"  name="teacherName">
+  <option value="{{$students[0]->teacher_name}}" selected disabled hidden>{{$students[0]->teacher_name}}</option>
+  @foreach($teachers as $teacher)
+    <option value="{{$teacher->teacher_name}}"  class="dropdown-item">{{$teacher->teacher_name}}</option>
+   @endforeach
+</select>
+
+
   </div>
+  
+  
+ 
 
   
   <button type="submit" class="btn btn-success p-2">Update</button>
+  </div>
 </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

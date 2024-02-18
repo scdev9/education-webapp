@@ -36,11 +36,12 @@ class TeacherTableController extends Controller
     }
 
     public function edit(int $id){
+        $subjects=DB::select('select * from subjects');
         $teach=Teacher::findOrFail($id);
         $user = Auth::user()->role_id;
         if ($user==0 ){
        // return ($teach);
-       return view('teachers.edit',compact('teach'));
+       return view('teachers.edit',compact('teach','subjects'));
         }
 
         return response('Unauthorized.', 401);
@@ -53,7 +54,7 @@ class TeacherTableController extends Controller
         $request->validate([
             'teacherName'=> 'required|max:255|string',
             'teacherEmail' => 'required',
-            'subject' => 'required|max:255|string',
+            'subject' => 'required',
             
         ]);
 

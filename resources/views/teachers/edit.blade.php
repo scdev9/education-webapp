@@ -30,13 +30,24 @@
   </div>
 
   <div class="form-group p-2">
-    <label for="exampleInputGrade">Subject</label>
-    <input type="string" class="form-control" name="subject" value="{{$teach->teacher_subject}}">
-    @error('password') <span class="text-danger">{{$message}}</span> @enderror
-  </div>
+  <label for="exampleInputEmail">Subject</label>
+  <select class="form-select"  name="subject">
+  <option value="{{$teach->teacher_subject}}" selected disabled hidden>{{$teach->teacher_subject}}</option>
+  @foreach($subjects as $subject)
+    <option value="{{$subject->subject}}"  class="dropdown-item">{{$subject->subject}}</option>
+   @endforeach
+</select>
 
+
+  </div>
   
+
+
+
+<div class="form-group p-2">
   <button type="submit" class="btn btn-success p-2">Update</button>
+</div>
+</div>
 </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
