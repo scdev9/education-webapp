@@ -5,14 +5,24 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"> @if($role==1)
+                <div class="card-header"> @if($role==1 && empty($check)==false)
                     {{ __("You're logged in as Student") }}
+                    
+                    @elseif($role==1 && empty($studentCheck)==true)
+                                <div>
+                                    <a href="#" class="btn btn-primary">Create Student Profile</a>
+                                </div>
 
                     @elseif($role==0)
                     {{ __("You're logged in as Admin") }}
                    
-                    @else
+                    @elseif($role==2 && empty($teacherCheck)==false)
                     {{ __("You're logged in as Teacher") }}
+
+                    @elseif($role==2 && empty($teacherCheck)==true)
+                                <div>
+                                    <a href="#" class="btn btn-primary">Create Teacher Profile</a>
+                                </div>
                     @endif
                    
                 </div>
@@ -28,7 +38,7 @@
 
 
                     <div align='center'>
-                        <b><u>@if($role==1)
+                        <b><u>@if($role==1 && empty($studentCheck)==false)
                                 {{ __("Your Online Classes Shedule.") }}
                             </u>
                         </b>
@@ -60,7 +70,7 @@
                     </div>
                    
                    
-                    @elseif($role==2)
+                    @elseif($role==2 && empty($teacherCheck)==false)
                    
                   
 
@@ -110,7 +120,7 @@
                       
                        
                     </div>
-                    @else
+                    @elseif($role==0)
 
                     <div class="row">
   <div class="col-sm-6">

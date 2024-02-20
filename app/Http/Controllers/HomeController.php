@@ -27,6 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $stid=Auth::user()->id;
         $role=Auth::user()->role_id;
         $teachers=DB::select('select sessions.session_date,sessions.start_time,sessions.end_time,students.student_name,students.student_email from session_controls join sessions on session_controls.session_id=sessions.id join teachers on session_controls.teacher_id=teachers.user_id join students on session_controls.student_id=students.user_id where session_controls.teacher_id = ?',[$stid]);
@@ -37,7 +38,11 @@ class HomeController extends Controller
    
        $students = DB::select('select * from students where user_id = ?',[$stid]);
        $teacherList=[];
+       $stName=Auth::user()->name;
+       $stEmail=Auth::user()->email;
+       $studentCheck=DB::select('select * from students where student_name=? and student_email=?',[$stName,$stEmail]);
       // $studen = [];
+      $teacherCheck=DB::select('select * from teachers where teacher_name=? and teacher_email=?',[$stName,$stEmail]);
       /* foreach($teachers as $teacher){
         
         
@@ -53,8 +58,8 @@ class HomeController extends Controller
 
        //dd($teacherList,$teachers);
 
-       
+       //dd(empty($check));
         
-        return view('home',compact('role','students','stid','teachers','sessions','teachers','teacherList'));
+        return view('home',compact('role','students','stid','teachers','sessions','teachers','teacherList','studentCheck','teacherCheck'));
     }
 }

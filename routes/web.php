@@ -28,7 +28,7 @@ Route::get('/teachers',[TeacherTableController::class ,'index']);
 Route::get('/teachers/create',[TeacherTableController::class ,'create']);
 Route::get('/users',[UserTableController::class, 'index']);
 Route::get('/users/create',[UserTableController::class, 'create']);
-Route::post('/users/create',[UserTableController::class, 'next']);
+Route::post('/users/create',[UserTableController::class, 'store']);
 Route::get('/teachers/{id}/edit',[TeacherTableController::class, 'edit']);
 Route::get('/teachers/{id}/delete',[TeacherTableController::class, 'destroy']);
 Route::put('/teachers/{id}/edit',[TeacherTableController::class, 'update']);

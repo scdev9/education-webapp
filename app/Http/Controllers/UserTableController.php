@@ -35,7 +35,7 @@ class UserTableController extends Controller
         return response('Unauthorized.', 401);
     }
 
-    public function next(Request $request){
+    public function store(Request $request){
 
         $request->validate([
             'userName'=> 'required|max:255|string',
@@ -46,44 +46,30 @@ class UserTableController extends Controller
         if($request->radio[0]=="Student"){
           $role=1;
 
-          $lastInsertedId = User::insertGetId([
+          User::create([
             'name' => $request->userName,
             'email' => $request->userEmail,
             'password' => bcrypt($request->password),
             'role_id'=>$role
-
         ]);
+
+      return redirect()->back()->with('status','User Created');
        
         
-        Student::create([
-            'student_name'=> $request->userName,
-            'student_email'=> $request->userEmail,
-            'user_id'=> $lastInsertedId,
-            'teacher_id'=>$role,
-            'student_grade'=>$role
-
-        ]);
+        
     }
      
         else{
             $role=2;
 
-            $lastInsertedId = User::insertGetId([
-              'name' => $request->userName,
-              'email' => $request->userEmail,
-              'password' => bcrypt($request->password),
-              'role_id'=>$role
-  
-          ]);
+            User::create([
+                'name' => $request->userName,
+                'email' => $request->userEmail,
+                'password' => bcrypt($request->password),
+                'role_id'=>$role
+            ]);
          
-         
-         Teacher::create([
-              'teacher_name'=> $request->userName,
-              'teacher_email'=> $request->userEmail,
-              'user_id'=> $lastInsertedId,
-              'teacher_subject'=>'test'
-  
-          ]);
+            return redirect()->back()->with('status','User Created');
         }
     }
 
