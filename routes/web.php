@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Route::get('/students',[StudentTableController::class ,'index']);
 Route::get('/students/create',[StudentTableController::class ,'create']);
+Route::post('/students/create',[StudentTableController::class ,'store']);
 Route::get('/teachers',[TeacherTableController::class ,'index']);
 Route::get('/teachers/create',[TeacherTableController::class ,'create']);
 Route::get('/users',[UserTableController::class, 'index']);

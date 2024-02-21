@@ -33,8 +33,14 @@ class StudentTableController extends Controller
 
     public function create()  {
         $user = Auth::user()->role_id;
-        if ($user==0 ){
-            return view('students.create');
+        $teachers=DB::select('select * from teachers');
+        $userName=Auth::user()->name;
+        $userEmail=Auth::user()->email;
+       // $student=Student::findOrFail($id);
+       // $students=DB::select('select students.id,students.created_at,students.updated_at,students.user_id,students.student_name,students.student_email,students.student_grade,students.teacher_id,teachers.teacher_name,teachers.id from students join teachers on students.teacher_id=teachers.id where students.id= ?',[$id]);
+     
+        if ($user==1 ){
+            return view('students.create',compact('teachers','user','userName','userEmail'));
         }
     
         return response('Unauthorized.', 401);
@@ -49,16 +55,17 @@ class StudentTableController extends Controller
 
         
         $user = Auth::user()->role_id;
-        if ($user==0 ){
+        $userId=Auth::user()->id;
+        $teacherId=DB::select('select id from teachers where teacher_name=?',[$request->teacherName]);
+        if ($user==1 ){
             
-        
+       // dd($teacherId);
 
        $request->validate([
         'studentName'=> 'required|max:255|string',
         'studentEmail'=> 'required',
-        'grade'=> 'required|max:13|integer',
-        'userId' => 'required|integer',
-        'teacherId' => 'required|integer'
+        'studentGrade'=> 'required|string',
+        'teacherName' => 'required|string'
 
        ]);
 
@@ -66,13 +73,13 @@ class StudentTableController extends Controller
 
        Student::create([
         'student_name'=>$request->studentName,
-          'student_grade' =>$request->grade,
+          'student_grade' =>$request->studentGrade,
           'student_email'=> $request->studentEmail,
-          'user_id' =>$request->userId,
-          'teacher_id' =>$request->teacherId
+          'user_id' =>$userId,
+          'teacher_id' =>$teacherId[0]->id
                ]);
 
-       return redirect()->back('students/create')->with('status','Student Added');
+       return redirect()->back()->with('status','Student Profile Created.');
             }
        return response('Unauthorized.', 401);
     }

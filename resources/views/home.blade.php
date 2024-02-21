@@ -6,13 +6,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"> @if($role==1 && empty($check)==false)
-                    {{ __("You're logged in as Student") }}
+                                             {{ __("You're logged in as Student") }}
                     
                     @elseif($role==1 && empty($studentCheck)==true)
                                 <div>
-                                    <a href="#" class="btn btn-primary">Create Student Profile</a>
+                                    <a href="{{url('/students/create')}}" class="btn btn-primary">Create Student Profile</a>
                                 </div>
-
+                               
+                </div>
+                <div>
+                                    <h3>Create Student Profile to use Features as Student.</h3>
+                                </div>
                     @elseif($role==0)
                     {{ __("You're logged in as Admin") }}
                    
@@ -23,6 +27,8 @@
                                 <div>
                                     <a href="#" class="btn btn-primary">Create Teacher Profile</a>
                                 </div>
+
+
                     @endif
                    
                 </div>
