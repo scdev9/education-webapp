@@ -8,6 +8,7 @@
 ![Laravel](https://img.shields.io/badge/Used-JavaScript-yellow?style=for-the-badge&logo=javascript&logoColor=yellow)
 ![Laravel](https://img.shields.io/badge/Version-1.0.0-green?style=for-the-badge&logo=version&logoColor=white)
 ![Laravel](https://img.shields.io/badge/Developer-SCDEV-orange?style=for-the-badge&logo=developer&logoColor=white)
+![Laravel](https://img.shields.io/badge/used-blade-pink?style=for-the-badge&logo=blade&logoColor=white)
 
 
 
