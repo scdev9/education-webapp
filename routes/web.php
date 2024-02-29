@@ -27,6 +27,7 @@ Route::get('/students/create',[StudentTableController::class ,'create']);
 Route::post('/students/create',[StudentTableController::class ,'store']);
 Route::get('/teachers',[TeacherTableController::class ,'index']);
 Route::get('/teachers/create',[TeacherTableController::class ,'create']);
+Route::post('/teachers/create',[TeacherTableController::class, 'store']);
 Route::get('/users',[UserTableController::class, 'index']);
 Route::get('/users/create',[UserTableController::class, 'create']);
 Route::post('/users/create',[UserTableController::class, 'store']);

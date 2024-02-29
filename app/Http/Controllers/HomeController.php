@@ -38,11 +38,16 @@ class HomeController extends Controller
    
        $students = DB::select('select * from students where user_id = ?',[$stid]);
        $teacherList=[];
+       $teachersCount=DB::select('select count(teacher_name) as teacherscount from teachers');
+       $studentsCount=DB::select('select count(*) as studentscount from students');
+       $usersCount=DB::select('select count(*) as userscount from users');
        $stName=Auth::user()->name;
        $stEmail=Auth::user()->email;
        $studentCheck=DB::select('select * from students where student_name=? and student_email=?',[$stName,$stEmail]);
       // $studen = [];
       $teacherCheck=DB::select('select * from teachers where teacher_name=? and teacher_email=?',[$stName,$stEmail]);
+      
+     // dd($teacherCount);
       /* foreach($teachers as $teacher){
         
         
@@ -60,6 +65,6 @@ class HomeController extends Controller
 
        //dd(empty($check));
         
-        return view('home',compact('role','students','stid','teachers','sessions','teachers','teacherList','studentCheck','teacherCheck'));
+        return view('home',compact('role','students','stid','teachers','sessions','teachers','teacherList','studentCheck','teacherCheck','teachersCount','studentsCount','usersCount'));
     }
 }

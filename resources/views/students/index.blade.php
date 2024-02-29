@@ -15,8 +15,15 @@
     @endif    
 <div class="card col-md-12">
   <div class="card-header">
-  <a class="btn btn-primary" href="{{url('/dashboard')}}">Back</a>
-
+    <div class="row">
+      <div class="col">
+      <a class="btn btn-primary" href="{{url('/dashboard')}}">Back</a>
+     </div>
+     <div class="col">
+      <a class="btn btn-success" href="{{url('/users/create')}}">Create</a>
+     </div>
+    </div>
+  
   </div>
   <div class="card-body">
     <h5 class="card-title">Students</h5>
